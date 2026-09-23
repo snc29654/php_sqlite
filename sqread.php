@@ -6,6 +6,7 @@
   $result = $db->query('SELECT * FROM entries');
   while ($row = $result->fetchArray()) {
     print_r($row['title']);
+    print_r("   ");
     print_r($row['body']);
     $kai="\n";
     print_r($kai);
