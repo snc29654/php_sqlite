@@ -43,6 +43,29 @@
       return false;
     });
 
+    $('#delete').click(function() {
+      var data = {
+        'request' : $('#request').val(),
+        'action' : $('#action').val(),
+        'delno' : $('#delno').val(),
+    
+    };
+      $.ajax({
+        type: "POST",
+        url: "sqdelete.php",
+        data: data,
+      }).success(function(data, dataType) {
+               var smp=document.getElementById("request1");
+               smp.innerHTML = data;
+
+
+
+      }).error(function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('Error : ' + errorThrown);
+      });
+      return false;
+    });
+
 
   });
   </script>
@@ -55,6 +78,8 @@
     <p><input id="read" value="DB読み出し" type="submit" /></p>
     <p><textarea name="request" id="request" cols="80" rows="10">ここになにか書いてください</textarea></p>
     <p><textarea name="request1" id="request1" cols="80" rows="30">読み出し領域</textarea></p>
+    <p><input id="delete" value="削除" type="submit" /></p>
+    <p><textarea name="delno" id="delno" cols="10" rows="1">削除no</textarea></p>
 
   </form>
 </body>

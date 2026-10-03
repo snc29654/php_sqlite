@@ -5,6 +5,8 @@
 
   $result = $db->query('SELECT * FROM entries');
   while ($row = $result->fetchArray()) {
+    print_r($row['id']);
+    print_r("   ");
     print_r($row['title']);
     print_r("   ");
     print_r($row['body']);
