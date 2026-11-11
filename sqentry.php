@@ -9,6 +9,8 @@
     print_r("   ");
     print_r($row['title']);
     print_r("   ");
+    print_r(mb_substr($row['body'],0, 10, "UTF-8"));
+
     $kai="\n";
     print_r($kai);
   }
