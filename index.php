@@ -61,6 +61,26 @@
       });
       return false;
     });
+    $('#html').click(function() {
+      var data = {
+        'request' : $('#request').val(),
+        'action' : $('#action').val(),
+    
+    };
+      $.ajax({
+        type: "POST",
+        url: "sqhtml.php",
+        data: data,
+      }).success(function(data, dataType) {
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+      }).error(function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('Error : ' + errorThrown);
+      });
+      return false;
+    });
+
 
     $('#entry').click(function() {
       var data = {
@@ -156,6 +176,7 @@
     <p><input id="send" value="DB書き込み" type="submit" /></p>
     <p><input id="read" value="DB読み出し" type="submit" />
     <p><input id="scrape" value="スクレイピング" type="submit" />
+    <p><input id="html" value="html格納" type="submit" />
     <input id="entry" value="エントリー読み出し" type="submit" /></p>
     <p><input id="readhtml" value="DBhtml読み出し" type="submit" /></p>
     <p><textarea name="request" id="request" cols="80" rows="10">記事かスクレイピングurlを記述</textarea></p>
