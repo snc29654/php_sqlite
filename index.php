@@ -41,6 +41,27 @@
       });
       return false;
     });
+
+    $('#scrape').click(function() {
+      var data = {
+        'request' : $('#request').val(),
+        'action' : $('#action').val(),
+    
+    };
+      $.ajax({
+        type: "POST",
+        url: "sqscrape.php",
+        data: data,
+      }).success(function(data, dataType) {
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+      }).error(function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('Error : ' + errorThrown);
+      });
+      return false;
+    });
+
     $('#entry').click(function() {
       var data = {
         'request' : $('#request').val(),
@@ -134,9 +155,10 @@
   <form method="post">
     <p><input id="send" value="DB書き込み" type="submit" /></p>
     <p><input id="read" value="DB読み出し" type="submit" />
+    <p><input id="scrape" value="スクレイピング" type="submit" />
     <input id="entry" value="エントリー読み出し" type="submit" /></p>
     <p><input id="readhtml" value="DBhtml読み出し" type="submit" /></p>
-    <p><textarea name="request" id="request" cols="80" rows="10">ここになにか書いてください</textarea></p>
+    <p><textarea name="request" id="request" cols="80" rows="10">記事かスクレイピングurlを記述</textarea></p>
     <p><textarea name="request1" id="request1" cols="80" rows="30">読み出し領域</textarea></p>
     <p><input id="select" value="選択" type="submit" /></p>
     <p><input id="delete" value="削除" type="submit" /></p>
