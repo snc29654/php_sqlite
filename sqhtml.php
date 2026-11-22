@@ -22,7 +22,7 @@
 
   $stmt = $db->prepare('INSERT INTO entries VALUES(NULL, :title, :body)');
   $stmt->bindValue(':title', $titlex, SQLITE3_TEXT);
-  $stmt->bindValue(':body', $htmls, SQLITE3_TEXT);
+  $stmt->bindValue(':body', $body.$htmls, SQLITE3_TEXT);
   $stmt->execute();
 
   $msg="DBに書き込みました";
