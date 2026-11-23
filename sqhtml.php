@@ -9,8 +9,8 @@
   $html = mb_convert_encoding($html, "HTML-ENTITIES", 'auto');
   @$dom->loadHTML($html);
   $xpath = new DOMXpath($dom);
-  $title = $xpath->query("//body")->item(0)->nodeValue;
-  echo $title;
+  $titley = $xpath->query("//title")->item(0)->nodeValue;
+  echo $titley;
 
 
 
@@ -22,7 +22,7 @@
 
   $stmt = $db->prepare('INSERT INTO entries VALUES(NULL, :title, :body)');
   $stmt->bindValue(':title', $titlex, SQLITE3_TEXT);
-  $stmt->bindValue(':body', $body.$htmls, SQLITE3_TEXT);
+  $stmt->bindValue(':body', $titley.$body.$htmls, SQLITE3_TEXT);
   $stmt->execute();
 
   $msg="DBに書き込みました";
