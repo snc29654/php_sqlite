@@ -146,6 +146,29 @@
       return false;
     });
 
+    $('#random').click(function() {
+      var data = {
+        'request' : $('#request').val(),
+        'action' : $('#action').val(),        
+        'delno' : $('#delno').val(),
+
+
+    
+    };
+      $.ajax({
+        type: "POST",
+        url: "sqrandom.php",
+        data: data,
+      }).success(function(data, dataType) {
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+      }).error(function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('Error : ' + errorThrown);
+      });
+      return false;
+    });
+
 
     $('#readhtml').click(function() {
       var data = {
@@ -208,6 +231,7 @@
     <p><textarea name="request1" id="request1" cols="80" rows="30">読み出し領域</textarea></p>
     <p><input id="select" value="選択" type="submit" /></p>
     <p><input id="last" value="最後" type="submit" /></p>
+    <p><input id="random" value="ランダム" type="submit" /></p>
     <p><input id="delete" value="削除" type="submit" /></p>
     <p><textarea name="delno" id="delno" cols="10" rows="1">id no</textarea></p>
      <p id="inbox"></p>
