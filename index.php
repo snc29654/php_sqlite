@@ -123,6 +123,28 @@
       return false;
     });
 
+    $('#search').click(function() {
+      var data = {
+        'request' : $('#request').val(),
+        'action' : $('#action').val(),        
+        'srch' : $('#srch').val(),
+
+
+    
+    };
+      $.ajax({
+        type: "POST",
+        url: "sqsrch.php",
+        data: data,
+      }).success(function(data, dataType) {
+	       document.getElementById( "request1" ).value = data ;
+
+      }).error(function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('Error : ' + errorThrown);
+      });
+      return false;
+    });
+
     $('#last').click(function() {
       var data = {
         'request' : $('#request').val(),
@@ -145,6 +167,7 @@
       });
       return false;
     });
+
 
     $('#random').click(function() {
       var data = {
@@ -226,6 +249,11 @@
     <p><input id="scrape" value="スクレイピング" type="submit" />
     <p><input id="html" value="html格納" type="submit" />
     <input id="entry" value="エントリー読み出し" type="submit" /></p>
+
+    <p><input id="search" value="検索" type="submit" />
+    <textarea name="srch" id="srch" cols="20" rows="1">検索文字</textarea></p>
+
+
     <p><input id="readhtml" value="DBhtml読み出し" type="submit" /></p>
     <p><textarea name="request" id="request" cols="80" rows="10">記事かスクレイピングurlを記述</textarea></p>
     <p><textarea name="request1" id="request1" cols="80" rows="30">読み出し領域</textarea></p>
